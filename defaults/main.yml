@@ -1,0 +1,20 @@
+---
+# defaults file for win_aksiok
+win_aksiok_files: "{{ role_path }}/files"
+win_aksiok_copy_path: 'C:\temp\aksios\'
+# Including the option "Trust access to object model VBA projects" and put a low level of security 
+win_aksiok_regedit_excel: 'HKCU:\SOFTWARE\Microsoft\Office\16.0\Excel\Security'
+win_aksiok_regedit_word: 'HKCU:\SOFTWARE\Microsoft\Office\16.0\Word\Security'
+win_aksiok_regedit_settings:
+  - path: "{{ win_aksiok_regedit_excel }}"
+    name: AccessVBOM
+    data: '1'
+  - path: "{{ win_aksiok_regedit_excel }}"
+    name: VBAWarnings
+    data: '1'
+  # - path: "{{ win_aksiok_regedit_word }}"
+  #   name: AccessVBOM
+  #   data: '1'
+  # - path: "{{ win_aksiok_regedit_word }}"
+  #   name: VBAWarnings
+  #   data: '1'

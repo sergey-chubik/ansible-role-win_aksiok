@@ -1,0 +1,28 @@
+---
+# tasks file for win_aksiok
+- name: win_aksiok | Copy install packages to C:\temp
+  win_copy:
+    src: "{{ win_aksiok_files }}/aksios20.06.28/"
+    dest: "{{ win_aksiok_copy_path }}"
+
+- name: win_aksiok | Install Aksiok
+  win_package:
+    path: "{{ win_aksiok_copy_path }}AksiokAKSQInstaller.msi"
+    product_id: '{46BC3C93-584C-41BA-A6AD-02B230DD3513}'
+    arguments: '/quiet /qn'
+    state: present
+  register: win_aksiok_install_status
+
+- name: win_aksiok | Copy connect.cfg to folder Aksiok
+  win_copy:
+    src: "{{ win_aksiok_files }}/connect.cfg"
+    dest: 'C:\Aksios\'
+  when: win_aksiok_install_status.changed
+
+- name: win_aksiok | Enable Macros and AccessVBOM in Excel
+  win_regedit:
+    path: "{{ item.path }}"
+    name: "{{ item.name }}"
+    data: "{{ item.data }}"
+    type: dword
+  loop: "{{ win_aksiok_regedit_settings }}"
