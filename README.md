@@ -1,22 +1,24 @@
-Role Name
+Ansible Role: Win-Aksiok
 =========
 
-A brief description of the role goes here.
+Эта роль установит ППО «АКСИОК» релиз aksios20.06.28 на ОС Windows.
+Версия для СУБД MS SQL Server
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Доступные переменные перечислены вместе со значениями по умолчанию (см. `defaults/main.yml`).
+Роль установит клиентскую часть и сервисный модуль на рабочую станцию, для подключения к серверу с базой данных используйте свой файл connect.cfg!
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Внимание для корректной выгрузки файлов из ППО «АКСИОК» необходим пакет Microsoft Excel 32bit.
 
 Example Playbook
 ----------------
@@ -25,7 +27,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - win_aksiok
 
 License
 -------
@@ -35,4 +37,5 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Chubik Sergey, sergey.chubik@mail.ru.
+Chubik Sergey, chubik@ekaterinburg.fsin.uis.
